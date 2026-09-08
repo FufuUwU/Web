@@ -1,1 +1,1 @@
-1. Make cool shit I guess.
+make intro-text wider while making sure the button doesn't become wide as shit - current button width: 480px on desktop.
