@@ -678,6 +678,9 @@ a.pc-wl-item:hover {
   border-color: rgba(var(--pc-grad-1-rgb), 0.6);
 }
 
+/* Readability scrim over the Discord-supplied profile gradient. Intentionally
+   NOT a theme variable — the gradient underneath comes from Discord and can be
+   any colour, so this has to stay dark regardless of the active flavour. */
 .presence-card.has-profile-grad .pc-row {
   background: rgba(17, 17, 27, 0.55);
 }

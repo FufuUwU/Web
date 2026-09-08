@@ -9,14 +9,14 @@
    ============================================================ */
 #visitor-counter {
   position: fixed;
-  bottom: 10rem;
-  /* clears the ~48px beta-bar + gap */
+  bottom: 10rem; /* clears the ~48px beta-bar + gap */
   z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  
+  /* boot reveal: fades in with the rest of the chrome, see .term-* below */
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 #visitor-counter .vc-label {
@@ -25,11 +25,6 @@
   text-transform: lowercase;
   color: var(--subtext-0);
   font-family: 'Comic Code', ui-monospace, monospace;
-}
-
-/* Boot reveal: fade in with the rest of the chrome */
-#visitor-counter {
-  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 body.term-booting #visitor-counter {

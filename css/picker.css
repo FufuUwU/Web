@@ -1,7 +1,16 @@
-/* oneko skin switcher — standalone picker styles.
-   No framework, no CSS variables required. Restyle freely. */
+/* oneko skin switcher — cat picker styles.
+   Markup is built by js/cat.js; see the .cat-picker tree it renders.
 
-/* https://github.com/doughmination/oneko.clove.is-a.dev/releases/tag/v1.0.0 */
+   Originally vendored from
+   https://github.com/doughmination/oneko.clove.is-a.dev/releases/tag/v1.0.0
+   as a standalone, variable-free sheet, then restyled in place to use the
+   Catppuccin theme variables. Both versions lived in this file at once —
+   every selector below was declared twice, with the second copy silently
+   winning — so they've been folded into one rule each, and the vendored
+   copy's hardcoded Catppuccin hexes swapped for the theme variables that
+   hold the same values, so the picker follows [data-flavor] like the rest
+   of the site. Non-colour leftovers from the vendored layout that nothing
+   later overrode are marked LEFTOVER. */
 
 #oneko {
   position: fixed;
@@ -12,6 +21,8 @@
   pointer-events: none;
 }
 
+/* --- overlay + panel ------------------------------------------------ */
+
 .cat-picker {
   position: fixed;
   inset: 0;
@@ -19,9 +30,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(17, 17, 27, 0.72);
-  backdrop-filter: blur(4px);
-  padding: 20px;
+  padding: 1rem;
+  /* Intentionally NOT var(--crust): a modal scrim stays dark on light themes
+     too (latte's crust is near-white, which would leave the panel with no
+     separation from the page). */
+  background: rgba(17, 17, 27, 0.65);
+  backdrop-filter: blur(2px);
 }
 
 .cat-picker[hidden] {
@@ -29,44 +43,53 @@
 }
 
 .cat-picker-panel {
-  background: #181825;
-  color: #cdd6f4;
-  border: 1px solid #313244;
-  border-radius: 14px;
-  width: min(720px, 100%);
+  width: min(94vw, 430px);
   max-height: 82vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  font-family: system-ui, sans-serif;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  background: var(--base);
+  border: 1px solid var(--surface-1);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  color: var(--text);
+  font-family: system-ui, sans-serif; /* LEFTOVER: overrides the site's Comic Code */
 }
 
 .cat-picker-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid #313244;
+  padding: 16px 20px; /* LEFTOVER: sits inside the panel's own 1rem padding */
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid var(--surface-0);
   font-weight: 700;
+  color: var(--pink);
 }
 
 .cat-picker-close {
   background: none;
   border: none;
-  color: #a6adc8;
-  font-size: 1.5rem;
+  color: var(--subtext-0);
+  font-size: 1.35rem;
   line-height: 1;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 0.25rem;
 }
 
 .cat-picker-close:hover {
-  color: #f38ba8;
+  color: var(--text);
 }
 
+/* --- section grid --------------------------------------------------- */
+
 .cat-grid {
-  overflow-y: auto;
-  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto; /* LEFTOVER: the panel already scrolls */
+  padding: 18px 20px; /* LEFTOVER: stacks with the panel's 1rem padding */
 }
 
 .cat-section {
@@ -74,48 +97,77 @@
 }
 
 .cat-section-title {
-  margin: 0 0 10px;
-  font-size: 0.8rem;
+  margin: 0 0 0.55rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--surface-1);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #cba6f7;
+  color: var(--mauve);
 }
 
 .cat-section-items {
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
 }
 
+/* --- one cat tile --------------------------------------------------- */
+
 .cat-option {
-  background: #1e1e2e;
-  border: 1px solid #313244;
-  border-radius: 10px;
-  padding: 10px 6px 8px;
-  cursor: pointer;
-  color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 0.3rem;
+  padding: 0.75rem 0.4rem 0.6rem;
+  background: var(--surface-0);
+  border: 1px solid var(--surface-1);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.74rem;
+  text-align: center;
+  cursor: pointer;
   transition:
-    border-color 0.12s,
-    transform 0.1s,
-    background 0.12s;
+    transform 0.15s ease,
+    border-color 0.15s ease;
 }
 
+/* Must stay above .cat-option.current — same specificity, and both set
+   border-color, so the later rule wins on a current+hovered tile.
+   NOTE: the vendored sheet lightened the tile on hover (base -> surface-0),
+   but the themed rewrite moved .cat-option itself to surface-0, so hover no
+   longer changes the background on any flavour. surface-1 would bring it
+   back if you want the lift to read again. */
 .cat-option:hover {
-  border-color: #cba6f7;
+  border-color: var(--mauve);
   transform: translateY(-2px);
-  background: #313244;
 }
 
+/* Higher specificity, so this is what actually lands on unlocked tiles.
+   NOTE: .cat-option:hover above still lifts *locked* tiles, which is
+   presumably what the :not(.locked) here was meant to prevent. */
+.cat-option:hover:not(.locked) {
+  transform: translateY(-2px);
+  border-color: var(--pink);
+}
+
+/* Marked by the pink border + inset ring only; the background it used to set
+   resolved to the same surface-0 .cat-option already has. */
 .cat-option.current {
-  border-color: #cba6f7;
-  background: #313244;
-  box-shadow: inset 0 0 0 1px #cba6f7;
+  border-color: var(--pink);
+  box-shadow: inset 0 0 0 1px var(--pink);
 }
 
+.cat-option.locked {
+  cursor: default;
+  opacity: 0.75;
+}
+
+/* .cat-preview / .cat-name are only ever rendered inside .cat-option, so
+   these pairs target the same elements; the descendant selector wins each
+   property it sets and the bare one supplies the rest. */
 .cat-option .cat-preview {
   width: 32px;
   height: 32px;
@@ -124,27 +176,47 @@
   border-radius: 4px;
 }
 
+.cat-preview {
+  /* 30px window + the -97px,-97px position = the idle frame inset 1px on
+     every side, so no preview can catch pixels from neighbouring frames.
+     NOTE: the 30px never applies — .cat-option .cat-preview above is more
+     specific and holds it at 32px. */
+  width: 30px;
+  height: 30px;
+  margin: 7px 1px 11px;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  transform: scale(1.7);
+  transform-origin: center;
+}
+
 .cat-option .cat-name {
   font-size: 0.68rem;
-  color: #bac2de;
+  color: var(--subtext-1);
   text-align: center;
   line-height: 1.1;
   word-break: break-word;
 }
 
+.cat-name {
+  font-weight: 500;
+}
+
+/* --- panel footer --------------------------------------------------- */
+
 .cat-hint {
-  margin: 0;
-  padding: 12px 20px;
-  border-top: 1px solid #313244;
-  font-size: 0.78rem;
-  color: #a6adc8;
+  margin: 0.85rem 0 0;
+  padding: 12px 20px; /* LEFTOVER: from the vendored full-bleed footer */
+  border-top: 1px solid var(--surface-0);
+  font-size: 0.68rem;
+  color: var(--subtext-0);
   text-align: center;
 }
 
 .cat-hide-btn {
   background: none;
   border: none;
-  color: #f38ba8;
+  color: var(--red);
   cursor: pointer;
   font-size: 0.78rem;
   padding: 0;
@@ -154,14 +226,16 @@
   text-decoration: underline;
 }
 
+/* --- misc ----------------------------------------------------------- */
+
 .oneko-show-btn {
   position: fixed;
   left: 14px;
   bottom: 14px;
   z-index: 2147483646;
-  background: #1e1e2e;
-  color: #bac2de;
-  border: 1px solid #313244;
+  background: var(--base);
+  color: var(--subtext-1);
+  border: 1px solid var(--surface-0);
   border-radius: 999px;
   padding: 7px 14px;
   font-size: 0.8rem;
@@ -173,13 +247,13 @@
 
 .oneko-show-btn:hover {
   opacity: 1;
-  border-color: #cba6f7;
-  color: #cdd6f4;
+  border-color: var(--mauve);
+  color: var(--text);
 }
 
 kbd {
-  background: #313244;
-  border: 1px solid #585b70;
+  background: var(--surface-0);
+  border: 1px solid var(--surface-2);
   border-bottom-width: 2px;
   border-radius: 6px;
   padding: 0.05em 0.45em;
@@ -209,134 +283,4 @@ kbd {
 .cat-toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-.cat-picker {
-  position: fixed;
-  inset: 0;
-  z-index: 2147483646;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: rgba(17, 17, 27, 0.65);
-  backdrop-filter: blur(2px);
-}
-
-.cat-picker[hidden] {
-  display: none;
-}
-
-.cat-picker-panel {
-  width: min(94vw, 430px);
-  max-height: 82vh;
-  overflow-y: auto;
-  background: var(--base);
-  border: 1px solid var(--surface-1);
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
-}
-
-.cat-picker-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.85rem;
-  font-weight: 700;
-  color: var(--pink);
-}
-
-.cat-picker-close {
-  background: none;
-  border: none;
-  color: var(--subtext-0);
-  font-size: 1.35rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0 0.25rem;
-}
-
-.cat-picker-close:hover {
-  color: var(--text);
-}
-
-.cat-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.cat-section-title {
-  margin: 0 0 0.55rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--mauve);
-  border-bottom: 1px solid var(--surface-1);
-  padding-bottom: 0.3rem;
-}
-
-.cat-section-items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.6rem;
-}
-
-.cat-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.75rem 0.4rem 0.6rem;
-  border-radius: 12px;
-  background: var(--surface-0);
-  border: 1px solid var(--surface-1);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 0.74rem;
-  text-align: center;
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.cat-option:hover:not(.locked) {
-  transform: translateY(-2px);
-  border-color: var(--pink);
-}
-
-.cat-option.current {
-  border-color: var(--pink);
-  box-shadow: inset 0 0 0 1px var(--pink);
-}
-
-.cat-option.locked {
-  cursor: default;
-  opacity: 0.75;
-}
-
-.cat-preview {
-  /* 30px window + the -97px,-97px position = the idle frame inset 1px on
-     every side, so no preview can catch pixels from neighbouring frames */
-  width: 30px;
-  height: 30px;
-  margin: 7px 1px 11px;
-  background-repeat: no-repeat;
-  image-rendering: pixelated;
-  transform: scale(1.7);
-  transform-origin: center;
-}
-
-.cat-name {
-  font-weight: 500;
-}
-
-.cat-hint {
-  margin: 0.85rem 0 0;
-  font-size: 0.68rem;
-  color: var(--subtext-0);
-  text-align: center;
 }
