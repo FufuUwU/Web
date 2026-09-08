@@ -1,1 +1,2 @@
-make intro-text wider while making sure the button doesn't become wide as shit - current button width: 480px on desktop.
+1. make intro-text wider while making sure the button doesn't become wide as shit - current button width: 480px on desktop.
+2. make projects page with gaybot, is-a.stupid.cat, and whatever else, also include your PR Reviewer work at is-a.dev
