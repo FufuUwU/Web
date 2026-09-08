@@ -168,6 +168,202 @@ main.intro,
   text-transform: lowercase;
 }
 
+/* Body copy under a hub header, e.g. the "17 year old developer..." blurb.
+   Default: a normal centred block that never exceeds its container. */
+.intro-text {
+  max-width: min(64ch, calc(100vw - 2.5rem));
+  margin: 10px auto;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--subtext-1);
+  font-size: 0.98rem;
+  padding: 0 0.25rem;
+}
+
+/* Only inside .hub-header does the blurb need to escape the 480px hub column —
+   at column width that long homepage paragraph stacks into a narrow ribbon.
+   margin-left:50% puts the block's left edge on the column's centre line and the
+   translate pulls it back by half its own width, so it stays centred there at
+   any width; the button below keeps the 480px column width.
+   Scoped deliberately: /socials puts .intro-text in .presence-stage instead, and
+   centring on THAT parent threw it ~156px off-axis. */
+.hub-header .intro-text {
+  width: min(64ch, calc(100vw - 2.5rem));
+  max-width: none;
+  margin-left: 50%;
+  margin-right: 0;
+  transform: translateX(-50%);
+}
+ ================================================================
+   bwah.dev — main stylesheet (css/index.css)
+   ================================================================
+   Loaded on every page via <link rel="stylesheet" href="/assets/css/index.css">.
+   Theme colours (--base, --mantle, --text, --mauve, --accent-rgb, etc.)
+   come from the Catppuccin flavour files imported below and are swapped
+   at runtime by theme-switcher.js via a [data-flavor] attribute on <html>.
+
+   Sections:
+     1. Universal   – layout shared by every page (shell, nav, hub header,
+                       link buttons, badges, 88x31 wall)
+     2. /coffee      – message-card pattern, also reused by /cv and 404
+     3. /dev-info    – tech-icon badges
+     4. /hardware    – parts-list table
+     5. /cv          – terminal-style blinking cursor
+     6. /guestbook   – misc guestbook bits
+     7. /projects
+
+    CSS WRITTEN BY ME, REFACTORED AND DOCUMENTED WITH CLAUDE
+   ================================================================ */
+
+/* IMPORTS */
+@import url(fonts.css);            /* @font-face: Comic Code */
+@import url(picker.css);           /* theme flavour picker widget */
+@import url(discord.css);          /* Discord presence card (/socials) */
+@import url(theme-switcher.css);   /* flavour switcher UI */
+@import url(themes/frappe.css);    /* Catppuccin Frappé variables */
+@import url(themes/latte.css);     /* Catppuccin Latte variables */
+@import url(themes/macchiato.css); /* Catppuccin Macchiato variables */
+@import url(themes/mocha.css);     /* Catppuccin Mocha variables (default) */
+
+:root {
+  /* Shared page backdrop, used on both <html> and <body> so there's no
+     flash of unstyled colour on overscroll/rubber-banding. */
+  --page-gradient: linear-gradient(135deg, var(--base) 0%, var(--mantle) 60%, var(--crust) 100%);
+  /* Shared drop shadow for the message-card / yuri-card pattern (see §2). */
+  --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* ================================================================
+   1. UNIVERSAL — shared page shell
+   ================================================================ */
+
+
+/* thank you to https://css-tricks.com/snippets/css/typewriter-effect/ for this code lol*/
+.typewriter h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  background: var(--page-gradient);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Comic Code', sans-serif;
+  background: var(--page-gradient);
+  color: var(--text);
+
+  /* top-anchored, horizontally centered, scrollable */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(2.5rem, 9vh, 6rem) 1.25rem 5rem;
+}
+
+/* The single centred content column used on every "hub" style page
+   (index, hardware, dev-info, socials, guestbook, ...).
+   `.hub` doesn't appear directly in the current markup but is kept as
+   a hook for pages that wrap content in a div rather than <main class="intro">. */
+main.intro,
+.hub {
+  width: 100%;
+  max-width: 480px;
+  z-index: 1;
+}
+
+/* --- Hub header: avatar, name, pronouns, tagline (index, hardware, dev-info) --- */
+
+/* <img class="pfp" src="assets/media/avatar.webp" ...> */
+.pfp {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--mauve);
+  box-shadow: 0 4px 18px rgba(var(--accent-rgb), 0.25);
+  margin: 10px 0;
+}
+
+/* <header class="hub-header"> wrapping the avatar + name + pronouns + intro text */
+.hub-header {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.hub-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  transition: color 0.6s ease;
+}
+
+/* "Hi, I'm" part of <h1 class="hey">Hi, I'm<span class="name">Ari</span></h1> */
+.hey {
+  color: var(--text);
+  /* Only lands where .hey is used outside a .hub-header (i.e. /socials);
+     inside one, .hub-header h1's `margin: 0` is more specific and wins. */
+  margin: 10px 0;
+}
+
+/* Name span inside .hey, coloured with the active theme's accent colour */
+.name {
+  color: rgb(var(--accent-rgb));
+}
+
+/* Adds the space between "I'm" and the name, since there's no space
+   in the markup between the text node and the <span class="name"> */
+.name::before {
+  content: " ";
+}
+
+/* Small uppercase tagline text, currently only used on /guestbook's header */
+.tagline {
+  margin: 0.35rem 0 0;
+  color: var(--subtext-0);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* <h2 class="pronouns">(She/They)</h2> under the name */
+.pronouns {
+  margin: 10px 0;
+  color: var(--mauve);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
 /* Body copy under the hub header, e.g. the "17 year old developer..." blurb.
    Deliberately breaks out of the 480px hub column — the blurb is long enough
    that at column width it stacks into a narrow ribbon. `margin-left: 50%` puts

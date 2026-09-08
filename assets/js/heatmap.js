@@ -71,9 +71,9 @@
     s.textContent = `
 .ch-root{
   --ch-cell:13px; --ch-gap:3px; --ch-weekday-w:30px;
-  --contrib-0:#232a33; --contrib-1:#173f2c; --contrib-2:#1e7349;
+  --contrib-0:var(--surface-0); --contrib-1:#173f2c; --contrib-2:#1e7349;
   --contrib-3:#34ab68; --contrib-4:#5ce897;
-  --ch-muted:#8b95a1; --ch-text:#d3dae2;
+  --ch-muted:var(--subtext-0); --ch-text:var(--text);
   display:block; width:100%; max-width:100%; color:var(--ch-text);
   font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
@@ -110,9 +110,9 @@
   }
 
   /* ---- pride palettes: [empty, level1, level2, level3, level4] ---- */
-  const N = "#20262e"; // shared neutral "empty" so lit cells pop on a dark card
+  const N = "var(--surface-0)"; // theme-driven "empty" so it works on latte too
   const THEMES = {
-    forest:      ["#232a33", "#173f2c", "#1e7349", "#34ab68", "#5ce897"],
+    forest:      [N, "#173f2c", "#1e7349", "#34ab68", "#5ce897"],
     rainbow:     [N, "#e40303", "#ff8c00", "#ffed00", "#2ecc40"],
     trans:       [N, "#5bcefa", "#f5a9b8", "#fbd3dc", "#ffffff"],
     bi:          [N, "#0038a8", "#7a4a99", "#c0277f", "#d60270"],
