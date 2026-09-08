@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Comic Code";
   src:
-    url("https://m.doughmination.gay/Comic-Code/woff2/ComicCode-Regular.woff2") format("woff2");
+    url("https://m.doughmination.gay/f/Comic-Code/woff2/ComicCode-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
@@ -9,7 +9,7 @@
 @font-face {
   font-family: "Comic Code";
   src:
-    url("https://m.doughmination.gay/Comic-Code/woff2/ComicCode-Italic.woff2") format("woff2");
+    url("https://m.doughmination.gay/f/Comic-Code/woff2/ComicCode-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
 }
@@ -17,7 +17,7 @@
 @font-face {
   font-family: "Comic Code";
   src:
-    url("https://m.doughmination.gay/Comic-Code/woff2/ComicCode-Bold.woff2") format("woff2");
+    url("https://m.doughmination.gay/f/Comic-Code/woff2/ComicCode-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: bold;
 }
