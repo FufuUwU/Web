@@ -14,6 +14,7 @@
      4. /hardware    – parts-list table
      5. /cv          – terminal-style blinking cursor
      6. /guestbook   – misc guestbook bits
+     7. /projects
 
     CSS WRITTEN BY ME, REFACTORED AND DOCUMENTED WITH CLAUDE
    ================================================================ */
@@ -39,6 +40,31 @@
 /* ================================================================
    1. UNIVERSAL — shared page shell
    ================================================================ */
+
+
+/* thank you to https://css-tricks.com/snippets/css/typewriter-effect/ for this code lol*/
+.typewriter h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
 
 *,
 *::before,
@@ -748,3 +774,121 @@ body:has(.dev-info) .hub {
   opacity: 50%;
   color: var(--subtext-1);
 }
+
+/* ================================================================
+   7. /projects
+   ================================================================ */
+
+/* A .project row is an image and a text block side by side, which doesn't fit
+   the 480px hub column every other page uses: 70% of 480 left the text column
+   at ~99px and pushed the thumbnail past the card edge (clipped by the
+   overflow:hidden below). Widened here only, via :has(), so no other page
+   moves — same approach as the /dev-info block above. */
+body:has(.projects) main.intro {
+  max-width: 900px;
+}
+
+.project {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    width: 70%;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+
+    border: 1px solid var(--surface-2);
+    border-radius: 8px;
+    background-color: var(--surface-0);
+
+    position: relative;
+    overflow: hidden;
+
+    /* The card element itself is the <a> (see projects/index.html), so pin the
+       body copy back to normal text — otherwise every line inherits the link
+       colour and the whole tile reads as one blue block. */
+    color: var(--text);
+    text-decoration: none;
+}
+
+/* The title carries the "this is a link" colour now that the inner <a> is gone.
+   --lavender because it's the closest palette entry to the browser default link
+   blue this used to render as, and unlike that default it follows the flavour. */
+.project h3 {
+    color: var(--lavender);
+}
+
+.project:hover {
+    background-color: var(--surface-1);
+}
+
+/* The card is a big keyboard target now; make the focus ring obvious. */
+.project:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 2px;
+}
+
+.project-reverse {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+    .project {
+        flex-direction: column;
+        margin: 2rem 1rem;
+        text-align: center;
+    }
+
+    .project-reverse {
+        flex-direction: column;
+    }
+}
+
+/* NOTE: this one is global, not scoped to /projects — it strips the underline
+   from every plain <a> on the site. Left as-is because it isn't breaking
+   anything, but move it under .projects if you only meant it for this page.
+   (A bare `header {}` rule used to sit here too. /projects has no <header> at
+   all, while .hub-header on /, /hardware, /dev-info and /socials *is* one, so
+   it was silently adding 96px 32px 80px of padding to those pages and shoving
+   the visitor counter into the intro text. Removed.) */
+a {
+    text-decoration: none;
+}
+
+/* The image column is bounded here rather than on the <img>, so how much room
+   it takes doesn't depend on the source file's intrinsic size. flex: 0 0 auto
+   keeps it from being shrunk by a long description. */
+.project-image {
+    flex: 0 0 auto;
+    max-width: 240px;
+}
+
+/* Bounds the box, never the shape. width/height stay auto and only maxima are
+   applied, so every thumbnail keeps its own aspect ratio — 16:9 screenshots,
+   square logos and the is-a.stupid.cat SVG all scale to fit rather than being
+   stretched to a fixed size the way the old inline width/height did. */
+.project-thumbnail {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 120px;
+}
+
+.projects {
+    padding: 5rem 1rem;
+    text-align: center;
+}
+
+ul {
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+.about-text {
+    padding-left: 19rem;
+    padding-right: 19rem;
+}
+

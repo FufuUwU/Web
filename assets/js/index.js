@@ -136,3 +136,20 @@ function closeNav() {
   // state the page happened to load in.
   mobile.addEventListener("change", render);
 })();
+
+
+fetch("https://status.gaybot.site/api/stats")
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById("guilds").textContent = data.guilds;
+    document.getElementById("installs").textContent = data.user_installs;
+  })
+  .catch(console.error);
+
+
+VanillaTilt.init(document.querySelectorAll(".project"), {
+  max: 5,
+  speed: 400,
+  glare: true,
+  "max-glare": 0.2
+});

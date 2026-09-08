@@ -41,7 +41,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <!-- Page Title -->
-    <title>Ari</title>
+    <title>Projects · Ari</title>
     <link rel="icon" type="image/png" href="/assets/media/favicon.png" />
     <link rel="stylesheet" href="/assets/css/index.css">
     <link rel="stylesheet" href="/assets/css/visitor-counter.css">
@@ -52,7 +52,7 @@
     <meta name="author" content="Ari" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://bwah.dev" />
+    <link rel="canonical" href="https://bwah.dev/projects/" />
     <!-- Alternate for mobile -->
     <link rel="alternate" media="only screen and (max-width: 640px)" href="https://bwah.dev" />
     <!-- Theme Color -->
@@ -60,10 +60,10 @@
     <!-- Open Graph / Discord / Facebook -->
     <meta property="og:image" content="https://bwah.dev/assets/media/favicon.png" />
     <meta property="og:site_name" content="Ari">
-    <meta property="og:title" content="Ari" />
-    <meta property="og:description" content="Personal site for Ari on github.com/FufuUwU on GitHub" />
+    <meta property="og:title" content="Projects · Ari" />
+    <meta property="og:description" content="Projects Ari builds and maintains — GayBot and is-a.stupid.cat." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bwah.dev" />
+    <meta property="og:url" content="https://bwah.dev/projects/" />
     <meta property="og:locale" content="en_GB" />
     <!-- Twitter Card -->
     <meta name="twitter:image" content="https://bwah.dev/assets/media/favicon.png">
@@ -76,7 +76,8 @@
     <span class="hamburger" onclick="openNav()">&#9776;</span>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/" class="active">Index</a>
+        <a href="/">Index</a>
+        <a href="/projects/" class="active">Projects</a>
         <a href="/dev-info/">Dev Info</a>
         <a href="/hardware/">Hardware</a>
         <a href="/cv/">Curriculum Vitae</a>
@@ -86,11 +87,83 @@
 
 
     <main class="intro">
+        <!-- Each card is itself the <a> — the title is a plain <h3> now, so the
+             whole tile is one link target (and still middle-clicks, focuses and
+             opens-in-new-tab like a normal link would). -->
+        <div class="projects">
+            <h1 class="hey">Projects</h1>
 
+            <a class="project" href="https://gaybot.site" target="_blank" rel="noopener">
+                <div class="project-text">
+                    <h3>GayBot</h3>
+                    <p>A Discord bot used by <span id="guilds">Loading...</span> servers and <span id="installs">Loading...</span> users.</p>
+                    <!-- TODO: make the stats on this update live -->
+                </div>
+
+                <div class="project-image">
+                    <img
+                        src="/assets/media/projects/gaybot.png"
+                        alt="GayBot"
+                        class="project-thumbnail"
+                    >
+                </div>
+            </a>
+
+            <a class="project project-reverse" href="https://is-a.stupid.cat" target="_blank" rel="noopener">
+                <div class="project-text">
+                    <h3>is-a.stupid.cat</h3>
+                    <p>A free subdomain registration service.</p>
+                </div>
+
+                <div class="project-image">
+                    <img
+                        src="/assets/media/projects/is-a-stupid-cat.svg"
+                        alt="is-a.stupid.cat"
+                        class="project-thumbnail"
+                    >
+                </div>
+            </a>
+        </div>
+
+        <div class="projects">
+            <h1 class="hey">Open-Source Contributions</h1>
+
+            <a class="project" href="https://is-a.dev" target="_blank" rel="noopener">
+                <div class="project-text">
+                    <h3>is-a.dev</h3>
+                    <p>I'm a PR reviewer for is-a.dev.</p>
+                </div>
+
+                <div class="project-image">
+                    <img
+                        src="https://is-a.dev/assets/favicon.ico"
+                        alt="is-a.dev"
+                        class="project-thumbnail"
+                    >
+                </div>
+            </a>
+
+            <!-- FOR THE LOVE OF GOD ARI GET THE OLD A.STUPID.CAT HOSTED ON A SUBDOMAIN, OLD.A.IS-A.DEV MAYBE -->
+            <!-- <a class="project project-reverse" href="https://a.stupid.cat" target="_blank" rel="noopener">
+                <div class="project-text">
+                    <h3>a.stupid.cat</h3>
+                    <p>My personal website and digital playground.</p>
+                </div>
+
+                <div class="project-image">
+                    <img
+                        src="/assets/media/projects/astupidcat.png"
+                        alt="a.stupid.cat"
+                        class="project-thumbnail"
+                    >
+                </div>
+            </a> -->
+        </div>
     </main>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
 <script src="/assets/js/index.js"></script>
 <script src="/assets/js/flavors.js"></script>
 <script src="/assets/js/cat.js"></script>
