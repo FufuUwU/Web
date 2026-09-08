@@ -202,6 +202,18 @@ main.intro,
   z-index: 0;
 } */
 
+/* Vanta writes `position: absolute; top: 0` straight onto its canvas as an
+   inline style, and sizes it from body.offsetHeight — which `html {height:100%}`
+   pins to one viewport. So on any page long enough to scroll (/hardware,
+   /projects, /dev-info) the background stayed at the top and scrolled away,
+   leaving the rest of the page bare. Pinning it to the viewport fixes both at
+   once: it can't scroll off, and one screen of canvas is all it ever needs.
+   !important is required to beat an inline style — author !important is the one
+   thing that outranks the style attribute. */
+.vanta-canvas {
+  position: fixed !important;
+}
+
 /* Teto chibi tucked into the bottom-right corner, on every page */
 body::after {
   content: "";
