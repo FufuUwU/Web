@@ -1,4 +1,4 @@
-// nabbed from https://github.com/doughmination/c.stupid.cat/src/branch/main/js/discord.js# with given permission uwu nya owo nyaaaa//
+// nabbed from https://github.com/doughmination/c.stupid.cat/src/branch/main/assets/js/discord.js# with given permission uwu nya owo nyaaaa//
 
 
 (function () {

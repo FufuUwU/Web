@@ -40,202 +40,53 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-
     <!-- Page Title -->
-    <title>Hardware · Ari</title>
+    <title>Ari</title>
     <link rel="icon" type="image/png" href="/assets/media/favicon.png" />
     <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/visitor-counter.css">
     <script>try { var f = localStorage.getItem('ctpFlavor'); document.documentElement.setAttribute('data-flavor', ['mocha', 'macchiato', 'frappe', 'latte'].indexOf(f) >= 0 ? f : 'mocha'); } catch (e) { document.documentElement.setAttribute('data-flavor', 'mocha'); }</script>
-
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Ari's hardware — full PC build and desk setup, from the Ryzen 9 7900X and RX 9070 XT down to the peripherals." />
-    <meta name="keywords" content="Ari, Hardware, PC Build, Specs, Desk Setup, Ryzen, Radeon, Battlestation" />
+    <meta name="description" content="Personal site for Ari on github.com/FufuUwU on GitHub" />
+    <meta name="keywords" content="Portfolio, Personal, Developer" />
     <meta name="author" content="Ari" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://bwah.dev/hardware-info/" />
-
+    <link rel="canonical" href="https://bwah.dev" />
     <!-- Alternate for mobile -->
-    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://bwah.dev/hardware-info/" />
-
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://bwah.dev" />
     <!-- Theme Color -->
     <meta name="theme-color" content="#cba6f7" />
-
     <!-- Open Graph / Discord / Facebook -->
     <meta property="og:image" content="https://bwah.dev/assets/media/favicon.png" />
     <meta property="og:site_name" content="Ari">
-    <meta property="og:title" content="Hardware · Ari" />
-    <meta property="og:description" content="Ari's hardware — full PC build and desk setup, from the Ryzen 9 7900X and RX 9070 XT down to the peripherals." />
+    <meta property="og:title" content="Ari" />
+    <meta property="og:description" content="Personal site for Ari on github.com/FufuUwU on GitHub" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bwah.dev/hardware-info/" />
+    <meta property="og:url" content="https://bwah.dev" />
     <meta property="og:locale" content="en_GB" />
-
     <!-- Twitter Card -->
     <meta name="twitter:image" content="https://bwah.dev/assets/media/favicon.png">
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Hardware · Ari" />
-    <meta name="twitter:description" content="Ari's hardware — full PC build and desk setup, from the Ryzen 9 7900X and RX 9070 XT down to the peripherals." />
+    <meta name="twitter:title" content="Ari" />
+    <meta name="twitter:description" content="Personal site for Ari on github.com/FufuUwU on GitHub" />
 </head>
 
 <body id="background">
     <span class="hamburger" onclick="openNav()">&#9776;</span>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/">Index</a>
+        <a href="/" class="active">Index</a>
         <a href="/dev-info/">Dev Info</a>
-        <a href="/hardware/" class="active">Hardware</a>
+        <a href="/hardware/">Hardware</a>
         <a href="/cv/">Curriculum Vitae</a>
         <a href="/socials/">Socials</a>
         <a href="/guestbook/">Guestbook</a>
-
     </div>
+
+
     <main class="intro">
-        <header class="hub-header">
-            <img class="pfp" src="/assets/media/avatar.webp" alt="Ari avatar" width="96" height="96"
-                fetchpriority="high">
-            <div>
-                <h1 class="hey">Hi, I'm<span class="name">Ari</span></h1>
-            </div>
-            <h2 class="pronouns">(She/They)</h2>
-            <br>
-            <div class="pcpp-part-list">
 
-                <div class="pcpp-row">
-                    <div class="pcpp-type">CPU</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/bwxRsY/amd-ryzen-9-7900x-47-ghz-12-core-processor-100-100000589wof" target="_blank">
-                            AMD Ryzen 9 7900X
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">CPU Cooler</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/YXFmP6/thermalright-aqua-elite-v3-6617-cfm-liquid-cpu-cooler-aqua-elite-360-white-v3" target="_blank">
-                            Thermalright Aqua Elite V3
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Motherboard</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/Q8KnTW/gigabyte-b850m-aorus-elite-wifi6e-ice-micro-atx-am5-motherboard-b850m-aorus-elite-wifi6e-ice" target="_blank">
-                            Gigabyte B850M AORUS ELITE WIFI6E ICE
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Memory</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/mjt9TW/corsair-vengeance-rgb-32-gb-2-x-16-gb-ddr5-6000-cl30-memory-cmh32gx5m2b6000z30k" target="_blank">
-                            Corsair Vengeance RGB 32 GB (2 x 16 GB) DDR5-6000 CL30
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Main SSD</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/hh4Zxr/crucial-p310-2-tb-m2-2280-pcie-40-x4-nvme-solid-state-drive-ct2000p310ssd8" target="_blank">
-                            Crucial P310 2 TB M.2-2280
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Second SSD</div>
-                    <div class="pcpp-item">
-                        Samsung OEM PM9B1 512GB Gen 4 NVMe 2242
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">GPU</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/FXkqqs/xfx-quicksilver-magnetic-air-radeon-rx-9070-xt-16-gb-video-card-rx-97tmaqkw9" target="_blank">
-                            XFX Quicksilver Magnetic Air Radeon RX 9070 XT 16 GB Video Card
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Case</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/nhbRsY/montech-xr-atx-mid-tower-case-xr-w/" target="_blank">
-                            Montech XR ATX Mid Tower Case
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Power Supply</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/4cWBD3/asus-rog-strix-850g-850-w-80-gold-certified-fully-modular-atx-power-supply-90ye00a3-b0na00" target="_blank">
-                            Asus ROG-STRIX-850G 850 W 80+ Gold
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Main Monitor</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/Hxtkcf/koorui-g2421v-238-2560-x-1440-180-hz-monitor-g2421v" target="_blank">
-                            KOORUI G2421V 23.8" 1440p @ 180Hz
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Second Monitor</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/vHdqqs/dell-monitor-p2414h/" target="_blank">
-                            Dell P2414H 23.8" 1080p @ 60Hz
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Mouse</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/4CMwrH/logitech-g305-lightspeed-wirelesswired-optical-mouse-910-005289" target="_blank">
-                            Logitech G305 LIGHTSPEED
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Microphone</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/4g4BD3/placeholder-" target="_blank">
-                            Aokeo AK-60 USB Microphone
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Headphones</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/Msjv6h/placeholder" target="_blank">
-                            Logitech G G522 LIGHTSPEED Wireless Gaming Headset - Black
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pcpp-row">
-                    <div class="pcpp-type">Keyboard</div>
-                    <div class="pcpp-item">
-                        <a href="https://uk.pcpartpicker.com/product/JKtkcf/placeholder/" target="_blank">
-                            IROK MG75 TKL 75% Keys - Silver
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
     </main>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -243,6 +94,7 @@
 <script src="/assets/js/index.js"></script>
 <script src="/assets/js/flavors.js"></script>
 <script src="/assets/js/cat.js"></script>
-<script src="/assets/js/heatmap.js"></script>
+<script src="/assets/js/visitor-counter.js" data-target="#visitor-counter" data-namespace="a-stupid-cat" data-key="hits" data-label="visitors"></script>
+
 
 </html>

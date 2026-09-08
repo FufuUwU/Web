@@ -309,14 +309,14 @@ const spriteFor = (c) => c.sprite || BASE_SPRITE;
 (async function catModes() {
   try {
     // index.json lists which per-folder configs to load (one per oneko folder)
-    const index = await fetch("/js/on/index.json").then((r) => {
+    const index = await fetch("/assets/js/on/index.json").then((r) => {
       if (!r.ok) throw new Error(`index.json (${r.status})`);
       return r.json();
     });
-    // load every /js/on/<folder>.json and merge them into one list
+    // load every /assets/js/on/<folder>.json and merge them into one list
     const lists = await Promise.all(
       index.map((name) =>
-        fetch(`/js/on/${name}.json`)
+        fetch(`/assets/js/on/${name}.json`)
           .then((r) => (r.ok ? r.json() : []))
           .catch(() => []),
       ),

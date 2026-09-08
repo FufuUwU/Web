@@ -1,7 +1,7 @@
 /* ================================================================
    bwah.dev — main stylesheet (css/index.css)
    ================================================================
-   Loaded on every page via <link rel="stylesheet" href="/css/index.css">.
+   Loaded on every page via <link rel="stylesheet" href="/assets/css/index.css">.
    Theme colours (--base, --mantle, --text, --mauve, --accent-rgb, etc.)
    come from the Catppuccin flavour files imported below and are swapped
    at runtime by theme-switcher.js via a [data-flavor] attribute on <html>.
@@ -560,7 +560,7 @@ body.message-page {
 }
 
 /* ================================================================
-   3. /dev-info — https://github.com/doughmination/clove-is-a-dev/src/branch/main/css/main.css
+   3. /dev-info — https://github.com/doughmination/clove-is-a-dev/src/branch/main/assets/css/main.css
    ================================================================ */
 
 /* Let only the dev-info page scroll; the link hub on other pages stays
