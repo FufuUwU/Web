@@ -147,6 +147,9 @@ main.intro,
   line-height: 1.6;
   color: var(--subtext-1);
   font-size: 0.98rem;
+  margin-top: 1vh;
+  margin-top: 0.75rem;
+  padding: 0 0.25rem;
 }
 
 /* --- Fixed decorative background layers (index.css only touches ::before/::after
@@ -404,10 +407,6 @@ body::after {
     padding: 0;
   }
 
-  .intro-text {
-    margin-top: 0.75rem;
-    padding: 0 0.25rem;
-  }
 
   .hub-header h1 {
     font-size: 1.7rem;
@@ -451,10 +450,6 @@ body::after {
     display: block;
   }
 
-  .intro-text {
-    margin-top: 1vh;
-  }
-}
 
 /* ================================================================
    2. /coffee — also reused by /cv and 404.html
@@ -572,7 +567,7 @@ body.message-page {
 }
 
 /* ================================================================
-   3. /dev-info — https://git.gay/doughmination/clove-is-a-dev/src/branch/main/css/main.css
+   3. /dev-info — https://github.com/doughmination/clove-is-a-dev/src/branch/main/css/main.css
    ================================================================ */
 
 /* Let only the dev-info page scroll; the link hub on other pages stays
