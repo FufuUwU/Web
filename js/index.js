@@ -41,12 +41,19 @@ function closeNav() {
    Vanta bakes options.color into the dot material and into its
    additive/subtractive blending choice at init time, so setOptions() would
    only repaint the lines and leave the dots on the old theme. A flavour
-   change therefore tears the instance down and rebuilds it. */
+   change therefore tears the instance down and rebuilds it.
+
+   Skipped entirely on mobile — a full-screen WebGL animation is the most
+   expensive thing on the page for the least benefit on a phone. The breakpoint
+   matches the one index.css already uses to hide .button-wall. Nothing is lost
+   visually: backgroundAlpha is 0, so the canvas only ever drew the net on top
+   of body's --page-gradient, and the gradient stays. */
 (function vantaTheme() {
   var el = document.getElementById("background") || document.body;
   if (typeof VANTA === "undefined" || !VANTA.NET || !el) return;
 
   var root = document.documentElement;
+  var mobile = window.matchMedia("(max-width: 768px)");
   var instance = null;
   var applied = "";
 
@@ -80,13 +87,24 @@ function closeNav() {
     };
   }
 
+  function teardown() {
+    if (instance) instance.destroy(); // also removes the canvas from the DOM
+    instance = null;
+  }
+
   function render() {
+    if (mobile.matches) {
+      if (applied !== "off") teardown();
+      applied = "off";
+      return;
+    }
+
     var c = themeColors();
     var key = c.color + "/" + c.background;
     if (key === applied) return; // nothing colour-related actually moved
     applied = key;
 
-    if (instance) instance.destroy();
+    teardown();
     instance = VANTA.NET({
       el: el,
       mouseControls: true,
@@ -112,4 +130,9 @@ function closeNav() {
     attributes: true,
     attributeFilter: ["data-flavor", "style"],
   });
+
+  // Rotating a phone or resizing a desktop window across the breakpoint tears
+  // the effect down or brings it back, rather than leaving it in whichever
+  // state the page happened to load in.
+  mobile.addEventListener("change", render);
 })();
