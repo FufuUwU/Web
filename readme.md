@@ -1,10 +1,10 @@
 <div align="center">
-<img src="https://a.stupid.cat/assets/media/avatar.png" alt="Ari avatar" height="100">
+<img src="https://bwah.dev/assets/media/avatar.png" alt="Ari avatar" height="100">
 
-# a.stupid.cat
+# bwah.dev
 </div>
 
-<a href="https://a.stupid.cat">a.stupid.cat</a> is the homepage and center for all of Ari's projects.
+<a href="https://bwah.dev">bwah.dev</a> is the homepage and center for all of Ari's projects.
 
 ## License
 
